@@ -5,7 +5,7 @@ namespace Tiko_WebAPI.Data
 {
     public class TikoDbContext : DbContext
     {
-        public TikoDbContext() : base()
+        public TikoDbContext(DbContextOptions options) : base(options)
         {
 
         }

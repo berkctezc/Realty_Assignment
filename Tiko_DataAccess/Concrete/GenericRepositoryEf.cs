@@ -11,7 +11,7 @@ namespace Tiko_DataAccess.Concrete
 {
     public class GenericRepositoryEf<T> : IRepository<T> where T : class
     {
-        private readonly TikoDbContext context = new();
+        private readonly TikoDbContext context;
         private readonly DbSet<T> _object;
 
         public GenericRepositoryEf()
