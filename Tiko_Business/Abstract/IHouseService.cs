@@ -9,7 +9,7 @@ namespace Tiko_Business.Abstract
         Task CreateHouseAsync(House house);
         Task<List<House>> ListHousesByAgentIdAsync(int id);
         Task<List<House>> ListHousesByCityIdAsync(int id);
-        Task UpdateHousePriceAsync(House house);
+        Task UpdateHousePriceAsync(House house,int newPrice);
         Task DeleteHouseAsync(House house);
     }
 }

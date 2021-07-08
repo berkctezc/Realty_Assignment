@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\Tiko_DataAccess\Tiko_DataAccess.csproj" />
     <ProjectReference Include="..\Tiko_Entities\Tiko_Entities.csproj" />
   </ItemGroup>
 
