@@ -5,56 +5,57 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tiko_DataAccess.Abstract;
+using Tiko_Entities.Abstract;
 using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
-    public class GenericRepositoryEf<T> : IRepository<T> where T : class
+    public class GenericRepositoryEf<TEntity, TContext> : IRepository<TEntity>
+        where TEntity : class, IEntity, new()
+        where TContext : DbContext, new()
+
     {
-        private readonly TikoDbContext context;
-        private readonly DbSet<T> _object;
 
-        public GenericRepositoryEf()
+        public async Task CreateAsync(TEntity x)
         {
-            _object = context.Set<T>();
-        }
-
-
-        public async Task CreateAsync(T x)
-        {
+            await using TContext context = new();
             var createdEntity = context.Entry(x);
             createdEntity.State = EntityState.Added;
             await context.SaveChangesAsync();
         }
 
 
-        public async Task<List<T>> GetAllAsync()
+        public async Task<List<TEntity>> GetAllAsync()
         {
-            return await _object.ToListAsync();
+            await using TContext context = new();
+            return await context.Set<TEntity>().ToListAsync();
         }
 
-        public async Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter)
+        public async Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return await _object.Where(filter).ToListAsync();
+            await using TContext context = new();
+            return await context.Set<TEntity>().Where(filter).ToListAsync();
         }
 
-        public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> filter)
         {
-            return await _object.SingleOrDefaultAsync(filter);
+            await using TContext context = new();
+            return await context.Set<TEntity>().SingleOrDefaultAsync(filter);
         }
 
-        public async Task UpdateAsync(T x)
+        public async Task UpdateAsync(TEntity x)
         {
+            await using TContext context = new();
             var updatedEntity = context.Entry(x);
             updatedEntity.State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(T x)
+        public async Task DeleteAsync(TEntity x)
         {
+            await using TContext context = new();
             var deletedEntity = context.Entry(x);
             deletedEntity.State = EntityState.Deleted;
-            _object.Remove(x);
             await context.SaveChangesAsync();
         }
     }

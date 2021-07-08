@@ -6,7 +6,7 @@ using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
-    public class EfHouseDal : GenericRepositoryEf<House>, IHouseDal
+    public class EfHouseDal : GenericRepositoryEf<House,TikoDbContext>, IHouseDal
     {
         private readonly TikoDbContext _context;
 

@@ -5,9 +5,19 @@ namespace Tiko_WebAPI.Data
 {
     public class TikoDbContext : DbContext
     {
-        public TikoDbContext(DbContextOptions options) : base(options)
+        public TikoDbContext(DbContextOptions<TikoDbContext> options) : base(options)
         {
 
+        }
+
+        public TikoDbContext()
+        {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=data\\tiko.db;");
         }
 
         public DbSet<City> Cities { get; set; }
