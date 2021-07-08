@@ -20,18 +20,12 @@ namespace Tiko_Entities.Concrete
         [Range(1, 10)]
         public int BedroomCount { get; set; }
 
-        // CITY
         [Required]
         [ForeignKey("City")]
         public int CityId { get; set; }
-        public virtual City City { get; set; }
-        //
 
-        // AGENT
         [Required]
         [ForeignKey("Agent")]
         public int AgentId { get; set; }
-        public virtual Agent Agent { get; set; }
-        //
     }
 }
