@@ -9,12 +9,12 @@ using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
-    public class GenericRepository<T> : IRepository<T> where T : class
+    public class GenericRepositoryEf<T> : IRepository<T> where T : class
     {
         private readonly TikoDbContext context = new();
         private readonly DbSet<T> _object;
 
-        public GenericRepository()
+        public GenericRepositoryEf()
         {
             _object = context.Set<T>();
         }
