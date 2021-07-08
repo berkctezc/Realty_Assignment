@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_WebAPI", "Tiko_WebAPI\Tiko_WebAPI.csproj", "{D9E76EEC-F2D5-446C-B96A-548F359E59FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_WebAPI", "Tiko_WebAPI\Tiko_WebAPI.csproj", "{D9E76EEC-F2D5-446C-B96A-548F359E59FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_DataAccess", "Tiko_DataAccess\Tiko_DataAccess.csproj", "{56284A36-F158-4740-9A1F-991D725B138C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_DataAccess", "Tiko_DataAccess\Tiko_DataAccess.csproj", "{56284A36-F158-4740-9A1F-991D725B138C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_Business", "Tiko_Business\Tiko_Business.csproj", "{463CB2C3-B755-49C5-B1E2-DA3D8C88BA27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_Business", "Tiko_Business\Tiko_Business.csproj", "{463CB2C3-B755-49C5-B1E2-DA3D8C88BA27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_Entities", "Tiko_Entities\Tiko_Entities.csproj", "{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_Entities", "Tiko_Entities\Tiko_Entities.csproj", "{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_Test", "Tiko_Test\Tiko_Test.csproj", "{92269311-482B-4E13-B70F-A0FF19AC3BA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92269311-482B-4E13-B70F-A0FF19AC3BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92269311-482B-4E13-B70F-A0FF19AC3BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92269311-482B-4E13-B70F-A0FF19AC3BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92269311-482B-4E13-B70F-A0FF19AC3BA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
