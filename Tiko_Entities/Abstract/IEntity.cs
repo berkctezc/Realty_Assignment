@@ -1,6 +1,6 @@
 ﻿namespace Tiko_Entities.Abstract
 {
-    interface IEntity
+    public interface IEntity
     {
     }
 }
