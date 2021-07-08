@@ -30,7 +30,7 @@ namespace Tiko_WebAPI.Controllers
         public async Task<ActionResult> AddCity([FromBody]City city)
         {
             await _cityService.CreateCityAsync(city);
-            return Ok("City Added");
+            return Created("add",city);
         }
     }
 }
