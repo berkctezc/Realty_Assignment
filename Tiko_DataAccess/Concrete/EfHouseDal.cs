@@ -1,12 +1,12 @@
-﻿using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using Tiko_DataAccess.Abstract;
 using Tiko_Entities.Concrete;
 using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
-    public class EfHouseDal : GenericRepositoryEf<House,TikoDbContext>, IHouseDal
+    public class EfHouseDal : GenericRepositoryEf<House, TikoDbContext>, IHouseDal
     {
         private readonly TikoDbContext _context;
 

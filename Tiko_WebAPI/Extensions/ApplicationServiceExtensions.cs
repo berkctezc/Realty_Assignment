@@ -23,15 +23,14 @@ namespace Tiko_WebAPI.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tiko_WebAPI", Version = "v1" });
             });
 
-            services.AddScoped<IAgentService,AgentManager>();
-            services.AddScoped<IAgentDal,EfAgentDal>();
+            services.AddScoped<IAgentService, AgentManager>();
+            services.AddScoped<IAgentDal, EfAgentDal>();
 
-            services.AddScoped<ICityService,CityManager>();
-            services.AddScoped<ICityDal,EfCityDal>();
+            services.AddScoped<ICityService, CityManager>();
+            services.AddScoped<ICityDal, EfCityDal>();
 
-            services.AddScoped<IHouseService,HouseManager>();
-            services.AddScoped<IHouseDal,EfHouseDal>();
-
+            services.AddScoped<IHouseService, HouseManager>();
+            services.AddScoped<IHouseDal, EfHouseDal>();
 
             return services;
         }

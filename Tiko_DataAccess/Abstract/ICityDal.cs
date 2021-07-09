@@ -2,8 +2,7 @@
 
 namespace Tiko_DataAccess.Abstract
 {
-    public interface ICityDal:IRepository<City>
+    public interface ICityDal : IRepository<City>
     {
-        
     }
 }

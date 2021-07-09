@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Tiko_DataAccess.Abstract;
 using Tiko_Entities.Abstract;
-using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
@@ -15,7 +14,6 @@ namespace Tiko_DataAccess.Concrete
         where TContext : DbContext, new()
 
     {
-
         public async Task CreateAsync(TEntity x)
         {
             await using TContext context = new();
@@ -23,7 +21,6 @@ namespace Tiko_DataAccess.Concrete
             createdEntity.State = EntityState.Added;
             await context.SaveChangesAsync();
         }
-
 
         public async Task<List<TEntity>> GetAllAsync()
         {

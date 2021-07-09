@@ -2,8 +2,7 @@
 
 namespace Tiko_DataAccess.Abstract
 {
-    public interface IAgentDal:IRepository<Agent>
+    public interface IAgentDal : IRepository<Agent>
     {
-        
     }
 }

@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Tiko_Business.Abstract;
 using Tiko_Entities.Concrete;
 using Tiko_WebAPI.Data;
@@ -14,7 +14,6 @@ namespace Tiko_WebAPI.Controllers
     {
         private readonly IHouseService _houseService;
         private readonly TikoDbContext _context;
-
 
         public HouseController(IHouseService houseService, TikoDbContext context)
         {
@@ -35,6 +34,7 @@ namespace Tiko_WebAPI.Controllers
             var houses = await _houseService.ListHousesByAgentIdAsync(agentId);
             return Ok(houses);
         }
+
         [HttpGet("listByCity/{cityId:int}")]
         public async Task<ActionResult<List<City>>> ListHousesByCity([FromRoute] int cityId)
         {

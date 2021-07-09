@@ -30,7 +30,7 @@ namespace Tiko_Business.Concrete
             return await _houseDal.GetListAsync(x => x.CityId == id);
         }
 
-        public async Task UpdateHousePriceAsync(House house,int newPrice)
+        public async Task UpdateHousePriceAsync(House house, int newPrice)
         {
             await _houseDal.UpdateHousePriceAsync(house, newPrice);
         }

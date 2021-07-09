@@ -4,5 +4,5 @@ using Tiko_WebAPI.Data;
 
 namespace Tiko_DataAccess.Concrete
 {
-    public class EfAgentDal : GenericRepositoryEf<Agent,TikoDbContext>, IAgentDal { }
+    public class EfAgentDal : GenericRepositoryEf<Agent, TikoDbContext>, IAgentDal { }
 }

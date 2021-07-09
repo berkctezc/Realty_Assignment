@@ -7,9 +7,13 @@ namespace Tiko_Business.Abstract
     public interface IHouseService
     {
         Task CreateHouseAsync(House house);
+
         Task<List<House>> ListHousesByAgentIdAsync(int id);
+
         Task<List<House>> ListHousesByCityIdAsync(int id);
-        Task UpdateHousePriceAsync(House house,int newPrice);
+
+        Task UpdateHousePriceAsync(House house, int newPrice);
+
         Task DeleteHouseAsync(House house);
     }
 }

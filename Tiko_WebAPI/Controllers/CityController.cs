@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Tiko_Business.Abstract;
 using Tiko_Entities.Concrete;
 
-
 namespace Tiko_WebAPI.Controllers
 {
     [Route("api/[controller]")]
