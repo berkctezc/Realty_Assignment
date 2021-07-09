@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Tiko_Entities.Concrete;
 
-namespace Tiko_WebAPI.Data
+namespace Tiko_DataAccess.Concrete.EntityFramework
 {
     public class TikoDbContext : DbContext
     {

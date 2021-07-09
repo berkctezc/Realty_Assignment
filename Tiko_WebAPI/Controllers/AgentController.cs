@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract;
+using Tiko_DataAccess.Concrete.EntityFramework;
 using Tiko_Entities.Concrete;
-using Tiko_WebAPI.Data;
 
 namespace Tiko_WebAPI.Controllers
 {

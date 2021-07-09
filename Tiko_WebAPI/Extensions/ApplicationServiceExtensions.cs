@@ -5,8 +5,7 @@ using Microsoft.OpenApi.Models;
 using Tiko_Business.Abstract;
 using Tiko_Business.Concrete;
 using Tiko_DataAccess.Abstract;
-using Tiko_DataAccess.Concrete;
-using Tiko_WebAPI.Data;
+using Tiko_DataAccess.Concrete.EntityFramework;
 
 namespace Tiko_WebAPI.Extensions
 {

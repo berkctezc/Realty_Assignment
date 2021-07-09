@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Tiko_DataAccess.Abstract;
 using Tiko_Entities.Abstract;
 
-namespace Tiko_DataAccess.Concrete
+namespace Tiko_DataAccess.Concrete.EntityFramework
 {
     public class GenericRepositoryEf<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class, IEntity, new()

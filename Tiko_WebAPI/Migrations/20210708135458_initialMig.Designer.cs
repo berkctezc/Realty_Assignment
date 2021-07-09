@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Tiko_WebAPI.Data;
+using Tiko_DataAccess.Concrete.EntityFramework;
 
 namespace Tiko_WebAPI.Migrations
 {
