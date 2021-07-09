@@ -17,7 +17,7 @@ namespace Tiko_WebAPI.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(b=>b.MigrationsAssembly("Tiko_WebAPI"));
+            optionsBuilder.UseSqlite("Data source=..\\Tiko_WebAPI\\Data\\tiko.db",b=>b.MigrationsAssembly("Tiko_WebAPI"));
         }
 
         public DbSet<City> Cities { get; set; }
