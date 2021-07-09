@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Tiko_DataAccess.Abstract
+namespace Tiko_DataAccess.Abstract.EntityFramework
 {
     public interface IRepository<T>
     {

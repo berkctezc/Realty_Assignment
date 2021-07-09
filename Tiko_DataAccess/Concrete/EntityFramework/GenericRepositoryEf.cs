@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tiko_DataAccess.Abstract;
+using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Abstract;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework

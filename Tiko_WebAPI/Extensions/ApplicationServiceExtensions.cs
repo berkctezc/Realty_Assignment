@@ -1,10 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DapperExtensions.Mapper;
+using DapperExtensions.Sql;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Tiko_Business.Abstract;
 using Tiko_Business.Concrete;
 using Tiko_DataAccess.Abstract;
+using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_DataAccess.Concrete.EntityFramework;
 
 namespace Tiko_WebAPI.Extensions
@@ -30,6 +33,7 @@ namespace Tiko_WebAPI.Extensions
 
             services.AddScoped<IHouseService, HouseManager>();
             services.AddScoped<IHouseDal, EfHouseDal>();
+
 
             return services;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Tiko_DataAccess.Abstract;
+using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework
