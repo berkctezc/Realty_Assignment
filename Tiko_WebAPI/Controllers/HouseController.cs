@@ -42,8 +42,8 @@ namespace Tiko_WebAPI.Controllers
             return Ok(houses);
         }
 
-        [HttpPut("updatePrice/{houseId:int}")]
-        public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromBody] int newPrice)
+        [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]
+        public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromRoute] int newPrice)
         {
             House houseToUpdate = await _context.Houses.SingleAsync(x => x.Id == houseId);
             await _houseService.UpdateHousePriceAsync(houseToUpdate, newPrice);
