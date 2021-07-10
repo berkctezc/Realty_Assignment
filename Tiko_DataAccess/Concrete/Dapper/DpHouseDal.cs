@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 
@@ -13,6 +13,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
     public class DpHouseDal : GenericRepositoryDapper<House>, IHouseDalDp
     {
         private readonly IDbConnection _db;
+
         public DpHouseDal(IConfiguration config) : base(config)
         {
             this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
@@ -21,7 +22,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
         public List<House> GetHousesByAgentId(int agentId)
         {
             var sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return _db.Query<House>(sql,new {@AgentId=agentId}).ToList();
+            return _db.Query<House>(sql, new { @AgentId = agentId }).ToList();
         }
 
         public List<House> GetHousesByCityId(int cityId)
@@ -33,7 +34,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
             var sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
-            await _db.ExecuteAsync(sql,new {@Price=newPrice,@Id=houseId});
+            await _db.ExecuteAsync(sql, new { @Price = newPrice, @Id = houseId });
         }
     }
 }

@@ -2,5 +2,5 @@
 
 namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface IAgentDalDp:IDapperRepository<Agent>{}
+    public interface IAgentDalDp : IDapperRepository<Agent> { }
 }

@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -27,7 +26,6 @@ namespace Tiko_WebAPI.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tiko_WebAPI", Version = "v1" });
             });
 
-
             // ENTITY FRAMEWORK
             services.AddScoped<IAgentServiceEf, AgentManager>();
             services.AddScoped<IAgentDal, EfAgentDal>();
@@ -47,7 +45,6 @@ namespace Tiko_WebAPI.Extensions
 
             services.AddScoped<IHouseServiceDp, HouseManagerDp>();
             services.AddScoped<IHouseDalDp, DpHouseDal>();
-
 
             return services;
         }

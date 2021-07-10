@@ -22,7 +22,7 @@ namespace Tiko_Business.Concrete.Dapper
 
         public async Task<List<Agent>> ListAgentsAsync()
         {
-           return await _agentDalDp.GetAllAsync();
+            return await _agentDalDp.GetAllAsync();
         }
 
         public async Task DeleteAgentAsync(Agent agent)

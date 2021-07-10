@@ -11,11 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_Business", "Tiko_Busin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_Entities", "Tiko_Entities\Tiko_Entities.csproj", "{6A0018CB-9D61-45BC-ADF9-28192EABEA5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tiko_Test", "Tiko_Test\Tiko_Test.csproj", "{92269311-482B-4E13-B70F-A0FF19AC3BA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tiko_Test", "Tiko_Test\Tiko_Test.csproj", "{92269311-482B-4E13-B70F-A0FF19AC3BA6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB35691D-A131-469A-A21A-92E306C45B8B}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		README.MD = README.MD
+		Tiko.NET.Assignment.pdf = Tiko.NET.Assignment.pdf
 	EndProjectSection
 EndProject
 Global

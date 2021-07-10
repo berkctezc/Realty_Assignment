@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Dapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using Tiko_Business.Abstract.Dapper;
-using Tiko_Business.Concrete.Dapper;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_WebAPI.Controllers
@@ -43,7 +42,7 @@ namespace Tiko_WebAPI.Controllers
         {
             var sql = "DELETE FROM Agents WHERE Id = @Id";
 
-            await _db.ExecuteAsync(sql,new{@Id=agentId});
+            await _db.ExecuteAsync(sql, new { @Id = agentId });
 
             return NoContent();
         }
