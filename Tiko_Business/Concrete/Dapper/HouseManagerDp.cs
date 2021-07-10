@@ -30,9 +30,9 @@ namespace Tiko_Business.Concrete.Dapper
             return _houseDalDp.GetHousesByCityId(id);
         }
 
-        public async Task UpdateHousePriceAsync(House house, int newPrice)
+        public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
-            await _houseDalDp.UpdateHousePriceAsync(house.Id, newPrice);
+            await _houseDalDp.UpdateHousePriceAsync(houseId, newPrice);
         }
 
         public async Task DeleteHouseAsync(House house)

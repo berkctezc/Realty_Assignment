@@ -12,7 +12,7 @@ namespace Tiko_Business.Abstract.Dapper
 
         List<House> ListHousesByCityId(int id);
 
-        Task UpdateHousePriceAsync(House house, int newPrice);
+        Task UpdateHousePriceAsync(int houseId, int newPrice);
 
         Task DeleteHouseAsync(House house);
     }
