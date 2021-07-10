@@ -22,19 +22,19 @@ namespace Tiko_DataAccess.Concrete.Dapper
         public List<House> GetHousesByAgentId(int agentId)
         {
             var sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return _db.Query<House>(sql, new { @AgentId = agentId }).ToList();
+            return _db.Query<House>(sql, new { AgentId = agentId }).ToList();
         }
 
         public List<House> GetHousesByCityId(int cityId)
         {
             var sql = "SELECT * from Houses WHERE CityId = @CityId";
-            return _db.Query<House>(sql, new { @CityId = cityId }).ToList();
+            return _db.Query<House>(sql, new { CityId = cityId }).ToList();
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
             var sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
-            await _db.ExecuteAsync(sql, new { @Price = newPrice, @Id = houseId });
+            await _db.ExecuteAsync(sql, new { Price = newPrice, Id = houseId });
         }
     }
 }
