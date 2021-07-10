@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract;
+using Tiko_Business.Abstract.EntityFramework;
 using Tiko_DataAccess.Concrete.EntityFramework;
 using Tiko_Entities.Concrete;
 
@@ -12,10 +12,10 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class HouseController : ControllerBase
     {
-        private readonly IHouseService _houseService;
+        private readonly IHouseServiceEf _houseService;
         private readonly TikoDbContext _context;
 
-        public HouseController(IHouseService houseService, TikoDbContext context)
+        public HouseController(IHouseServiceEf houseService, TikoDbContext context)
         {
             _houseService = houseService;
             _context = context;

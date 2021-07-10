@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Tiko_DataAccess.Abstract;
+﻿using Microsoft.Extensions.Configuration;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 

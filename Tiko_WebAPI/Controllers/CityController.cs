@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract;
+using Tiko_Business.Abstract.Common;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_WebAPI.Controllers

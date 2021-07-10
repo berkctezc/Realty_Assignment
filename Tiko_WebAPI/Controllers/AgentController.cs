@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract;
+using Tiko_Business.Abstract.Common;
 using Tiko_DataAccess.Concrete.EntityFramework;
 using Tiko_Entities.Concrete;
 

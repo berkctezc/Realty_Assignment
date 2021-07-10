@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Dapper;
 using DapperExtensions;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
-using Tiko_DataAccess.Abstract;
 using Tiko_DataAccess.Abstract.Dapper;
 
 namespace Tiko_DataAccess.Concrete.Dapper
