@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Tiko_Business.Abstract.Common;
 using Tiko_Business.Abstract.Dapper;
+using Tiko_Business.Abstract.EntityFramework;
 using Tiko_Business.Concrete.Dapper;
 using Tiko_Business.Concrete.EntityFramework;
 using Tiko_DataAccess.Abstract.Dapper;
@@ -28,20 +29,20 @@ namespace Tiko_WebAPI.Extensions
 
 
             // ENTITY FRAMEWORK
-            services.AddScoped<IAgentService, AgentManager>();
+            services.AddScoped<IAgentServiceEf, AgentManager>();
             services.AddScoped<IAgentDal, EfAgentDal>();
 
-            services.AddScoped<ICityService, CityManager>();
+            services.AddScoped<ICityServiceEf, CityManager>();
             services.AddScoped<ICityDal, EfCityDal>();
 
-            services.AddScoped<IHouseService, HouseManager>();
+            services.AddScoped<IHouseServiceEf, HouseManager>();
             services.AddScoped<IHouseDal, EfHouseDal>();
 
             // DAPPER
-            services.AddScoped<IAgentService, AgentManagerDp>();
+            services.AddScoped<IAgentServiceDp, AgentManagerDp>();
             services.AddScoped<IAgentDalDp, DpAgentDal>();
 
-            services.AddScoped<ICityService, CityManagerDp>();
+            services.AddScoped<ICityServiceDp, CityManagerDp>();
             services.AddScoped<ICityDalDp, DpCityDal>();
 
             services.AddScoped<IHouseServiceDp, HouseManagerDp>();

@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract.EntityFramework;
-using Tiko_DataAccess.Concrete.EntityFramework;
+using Dapper;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
+using Tiko_Business.Abstract.Dapper;
+using Tiko_Business.Concrete.Dapper;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AgentController : ControllerBase
+    public class DpAgentController : ControllerBase
     {
-        private readonly IAgentServiceEf _agentService;
-        private readonly TikoDbContext _context;
+        private readonly IAgentServiceDp _agentService;
+        private readonly IDbConnection _db;
 
-        public AgentController(IAgentServiceEf agentService, TikoDbContext context)
+        public DpAgentController(IAgentServiceDp agentService, IConfiguration config)
         {
             _agentService = agentService;
-            _context = context;
+            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         [HttpPost("add")]
@@ -38,8 +41,10 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            Agent agentToDelete = await _context.Agents.SingleAsync(x => x.Id == agentId);
-            await _agentService.DeleteAgentAsync(agentToDelete);
+            var sql = "DELETE FROM Agents WHERE Id = @Id";
+
+            await _db.ExecuteAsync(sql,new{@Id=agentId});
+
             return NoContent();
         }
     }

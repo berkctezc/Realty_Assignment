@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract.Common;
+using Tiko_Business.Abstract.EntityFramework;
 using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_Business.Concrete.EntityFramework
 {
-    public class CityManager : ICityService
+    public class CityManager : ICityServiceEf
     {
         private readonly ICityDal _cityDal;
 

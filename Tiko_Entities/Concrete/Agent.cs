@@ -1,14 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Tiko_Entities.Abstract;
 
 namespace Tiko_Entities.Concrete
 {
-    [Table("Agents")]
+    [Dapper.Contrib.Extensions.Table("Agents")]
     public class Agent : IEntity
     {
         [Required]
-        [Key]
+        [Dapper.Contrib.Extensions.Key]
         public int Id { get; set; }
 
         [Required]

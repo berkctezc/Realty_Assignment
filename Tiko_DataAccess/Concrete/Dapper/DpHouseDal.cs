@@ -12,28 +12,28 @@ namespace Tiko_DataAccess.Concrete.Dapper
 {
     public class DpHouseDal : GenericRepositoryDapper<House>, IHouseDalDp
     {
-        private IDbConnection db;
+        private readonly IDbConnection _db;
         public DpHouseDal(IConfiguration config) : base(config)
         {
-            this.db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
+            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         public List<House> GetHousesByAgentId(int agentId)
         {
             var sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return db.Query<House>(sql,new {@AgentId=agentId}).ToList();
+            return _db.Query<House>(sql,new {@AgentId=agentId}).ToList();
         }
 
         public List<House> GetHousesByCityId(int cityId)
         {
             var sql = "SELECT * from Houses WHERE CityId = @CityId";
-            return db.Query<House>(sql, new { @CityId = cityId }).ToList();
+            return _db.Query<House>(sql, new { @CityId = cityId }).ToList();
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
             var sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
-            await db.ExecuteAsync(sql,new {@Price=newPrice,@Id=houseId});
+            await _db.ExecuteAsync(sql,new {@Price=newPrice,@Id=houseId});
         }
     }
 }

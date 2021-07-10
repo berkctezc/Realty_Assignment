@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract.Common;
+using Tiko_Business.Abstract.Dapper;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_Business.Concrete.Dapper
 {
-    public class CityManagerDp : ICityService
+    public class CityManagerDp : ICityServiceDp
     {
         private readonly ICityDalDp _cityDalDp;
 

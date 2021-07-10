@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract.Common;
+using Tiko_Business.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
 
 namespace Tiko_WebAPI.Controllers
@@ -10,9 +10,9 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class CityController : ControllerBase
     {
-        private readonly ICityService _cityService;
+        private readonly ICityServiceEf _cityService;
 
-        public CityController(ICityService cityService)
+        public CityController(ICityServiceEf cityService)
         {
             _cityService = cityService;
         }
