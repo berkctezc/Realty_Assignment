@@ -1,16 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Tiko_Entities.Concrete;
 
-namespace Tiko_Business.Abstract
+namespace Tiko_Business.Abstract.Common
 {
     public interface IHouseService
     {
         Task CreateHouseAsync(House house);
-
-        Task<List<House>> ListHousesByAgentIdAsync(int id);
-
-        Task<List<House>> ListHousesByCityIdAsync(int id);
 
         Task UpdateHousePriceAsync(House house, int newPrice);
 

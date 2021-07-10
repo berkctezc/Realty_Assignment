@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Tiko_Business.Abstract;
+using Tiko_Business.Abstract.Common;
 using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
 
-namespace Tiko_Business.Concrete
+namespace Tiko_Business.Concrete.EntityFramework
 {
     public class AgentManager : IAgentService
     {
