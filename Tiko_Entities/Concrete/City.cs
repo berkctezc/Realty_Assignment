@@ -4,11 +4,11 @@ using Tiko_Entities.Abstract;
 
 namespace Tiko_Entities.Concrete
 {
-    [Table("Cities")]
+    [Dapper.Contrib.Extensions.Table("Cities")]
     public class City : IEntity
     {
         [Required]
-        [Key]
+        [Dapper.Contrib.Extensions.Key]
         public int Id { get; set; }
 
         [Required]
