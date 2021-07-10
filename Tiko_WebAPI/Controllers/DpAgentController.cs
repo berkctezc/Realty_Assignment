@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using Dapper.Contrib.Extensions;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 
@@ -40,9 +41,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            var sql = "DELETE FROM Agents WHERE Id = @Id";
-
-            await _db.ExecuteAsync(sql, new { @Id = agentId });
+            await _agentService.DeleteAgentAsync(_db.Get<Agent>(agentId));
 
             return NoContent();
         }
