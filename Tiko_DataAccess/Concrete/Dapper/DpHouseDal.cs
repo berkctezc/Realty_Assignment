@@ -19,16 +19,16 @@ namespace Tiko_DataAccess.Concrete.Dapper
             this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
-        public List<House> GetHousesByAgentId(int agentId)
+        public Task<List<House>> GetHousesByAgentIdAsync(int agentId)
         {
             var sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return _db.Query<House>(sql, new { AgentId = agentId }).ToList();
+            return Task.Run(() => _db.Query<House>(sql, new { AgentId = agentId }).ToList());
         }
 
-        public List<House> GetHousesByCityId(int cityId)
+        public Task<List<House>> GetHousesByCityIdAsync(int cityId)
         {
             var sql = "SELECT * from Houses WHERE CityId = @CityId";
-            return _db.Query<House>(sql, new { CityId = cityId }).ToList();
+            return Task.Run(() => _db.Query<House>(sql, new { CityId = cityId }).ToList());
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)

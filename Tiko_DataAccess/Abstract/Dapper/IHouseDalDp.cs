@@ -6,9 +6,9 @@ namespace Tiko_DataAccess.Abstract.Dapper
 {
     public interface IHouseDalDp : IDapperRepository<House>
     {
-        List<House> GetHousesByAgentId(int agentId);
+        Task<List<House>> GetHousesByAgentIdAsync(int agentId);
 
-        List<House> GetHousesByCityId(int cityId);
+        Task<List<House>> GetHousesByCityIdAsync(int cityId);
 
         Task UpdateHousePriceAsync(int houseId, int newPrice);
     }

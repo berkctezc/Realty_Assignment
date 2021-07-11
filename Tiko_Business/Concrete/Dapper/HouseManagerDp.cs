@@ -25,14 +25,14 @@ namespace Tiko_Business.Concrete.Dapper
             return await _houseDalDp.GetByIdAsync(id);
         }
 
-        public List<House> ListHousesByAgentId(int id)
+        public Task<List<House>> ListHousesByAgentIdAsync(int id)
         {
-            return _houseDalDp.GetHousesByAgentId(id);
+            return _houseDalDp.GetHousesByAgentIdAsync(id);
         }
 
-        public List<House> ListHousesByCityId(int id)
+        public Task<List<House>> ListHousesByCityIdAsync(int id)
         {
-            return _houseDalDp.GetHousesByCityId(id);
+            return _houseDalDp.GetHousesByCityIdAsync(id);
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)

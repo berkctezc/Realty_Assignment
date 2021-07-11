@@ -10,9 +10,9 @@ namespace Tiko_Business.Abstract.Dapper
 
         Task<House> GetHouseByIdAsync(int id);
 
-        List<House> ListHousesByAgentId(int id);
+        Task<List<House>> ListHousesByAgentIdAsync(int id);
 
-        List<House> ListHousesByCityId(int id);
+        Task<List<House>> ListHousesByCityIdAsync(int id);
 
         Task UpdateHousePriceAsync(int houseId, int newPrice);
 

@@ -28,14 +28,14 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("listByAgent/{agentId:int}")]
         public async Task<ActionResult<List<House>>> ListHousesByAgent([FromRoute] int agentId)
         {
-            var houses = await Task.Run(() => _houseService.ListHousesByAgentId(agentId));
+            var houses = await Task.Run(() => _houseService.ListHousesByAgentIdAsync(agentId));
             return Ok(houses);
         }
 
         [HttpGet("listByCity/{cityId:int}")]
         public async Task<ActionResult<List<House>>> ListHousesByCity([FromRoute] int cityId)
         {
-            var houses = await Task.Run(() => _houseService.ListHousesByCityId(cityId));
+            var houses = await Task.Run(() => _houseService.ListHousesByCityIdAsync(cityId));
             return Ok(houses);
         }
 
