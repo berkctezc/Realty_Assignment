@@ -9,7 +9,7 @@ using Tiko_Entities.Abstract;
 
 namespace Tiko_DataAccess.Concrete.Dapper
 {
-    public class GenericRepositoryDapper<T> : IDapperRepository<T> where T : class,IEntity, new()
+    public class GenericRepositoryDapper<T> : IDapperRepository<T> where T : class, IEntity, new()
     {
         private readonly IDbConnection _db;
 
@@ -23,7 +23,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
             return await _db.GetAllAsync<T>() as List<T>;
         }
 
-        public async Task<T> GetById(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _db.GetAsync<T>(id);
         }

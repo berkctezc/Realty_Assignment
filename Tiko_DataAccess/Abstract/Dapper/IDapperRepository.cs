@@ -8,7 +8,7 @@ namespace Tiko_DataAccess.Abstract.Dapper
     {
         Task<List<T>> GetAllAsync();
 
-        Task<T> GetById(int id);
+        Task<T> GetByIdAsync(int id);
 
         Task CreateAsync(T x);
 

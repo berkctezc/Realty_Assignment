@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
@@ -36,7 +35,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            Agent agentToDelete = await _agentService.GetAgentById(agentId);
+            Agent agentToDelete = await _agentService.GetAgentByIdAsync(agentId);
             await _agentService.DeleteAgentAsync(agentToDelete);
             return NoContent();
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
@@ -43,7 +42,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]
         public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromRoute] int newPrice)
         {
-            House houseToUpdate = await _houseService.GetHouseById(houseId);
+            House houseToUpdate = await _houseService.GetHouseByIdAsync(houseId);
             await _houseService.UpdateHousePriceAsync(houseToUpdate, newPrice);
             return NoContent();
         }
@@ -51,7 +50,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{houseId:int}")]
         public async Task<ActionResult> RemoveHouse([FromRoute] int houseId)
         {
-            House houseToDelete = await _houseService.GetHouseById(houseId);
+            House houseToDelete = await _houseService.GetHouseByIdAsync(houseId);
             await _houseService.DeleteHouseAsync(houseToDelete);
             return NoContent();
         }
