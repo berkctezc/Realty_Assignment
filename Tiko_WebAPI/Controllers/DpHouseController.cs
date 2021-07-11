@@ -1,6 +1,4 @@
-﻿using Dapper.Contrib.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,13 +11,11 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class DpHouseController : ControllerBase
     {
-        private readonly IHouseServiceDp  _houseService;
-        private readonly SqliteConnection _db;
+        private readonly IHouseServiceDp _houseService;
 
         public DpHouseController(IHouseServiceDp houseService, IConfiguration config)
         {
             _houseService = houseService;
-            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         [HttpPost("add")]
@@ -32,14 +28,14 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("listByAgent/{agentId:int}")]
         public async Task<ActionResult<List<City>>> ListHousesByAgent([FromRoute] int agentId)
         {
-            var houses = await Task.Run(()=>_houseService.ListHousesByAgentId(agentId));
+            var houses = await Task.Run(() => _houseService.ListHousesByAgentId(agentId));
             return Ok(houses);
         }
 
         [HttpGet("listByCity/{cityId:int}")]
         public async Task<ActionResult<List<City>>> ListHousesByCity([FromRoute] int cityId)
         {
-            var houses = await Task.Run(()=>_houseService.ListHousesByCityId(cityId));
+            var houses = await Task.Run(() => _houseService.ListHousesByCityId(cityId));
             return Ok(houses);
         }
 
@@ -53,7 +49,8 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{houseId:int}")]
         public async Task<ActionResult> RemoveHouse([FromRoute] int houseId)
         {
-            await _houseService.DeleteHouseAsync(_db.Get<House>(houseId));
+            House houseToRemove = await _houseService.GetHouseByIdAsync(houseId);
+            await _houseService.DeleteHouseAsync(houseToRemove);
             return NoContent();
         }
     }

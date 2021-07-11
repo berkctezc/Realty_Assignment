@@ -20,6 +20,11 @@ namespace Tiko_Business.Concrete.Dapper
             await _agentDalDp.CreateAsync(agent);
         }
 
+        public async Task<Agent> GetAgentByIdAsync(int id)
+        {
+            return await _agentDalDp.GetByIdAsync(id);
+        }
+
         public async Task<List<Agent>> ListAgentsAsync()
         {
             return await _agentDalDp.GetAllAsync();

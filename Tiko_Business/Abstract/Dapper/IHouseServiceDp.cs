@@ -8,6 +8,8 @@ namespace Tiko_Business.Abstract.Dapper
     {
         Task CreateHouseAsync(House house);
 
+        Task<House> GetHouseByIdAsync(int id);
+
         List<House> ListHousesByAgentId(int id);
 
         List<House> ListHousesByCityId(int id);

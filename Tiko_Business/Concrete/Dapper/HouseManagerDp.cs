@@ -20,6 +20,11 @@ namespace Tiko_Business.Concrete.Dapper
             await _houseDalDp.CreateAsync(house);
         }
 
+        public async Task<House> GetHouseByIdAsync(int id)
+        {
+            return await _houseDalDp.GetByIdAsync(id);
+        }
+
         public List<House> ListHousesByAgentId(int id)
         {
             return _houseDalDp.GetHousesByAgentId(id);

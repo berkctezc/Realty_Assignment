@@ -1,9 +1,6 @@
-﻿using Dapper.Contrib.Extensions;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_Entities.Concrete;
@@ -15,12 +12,10 @@ namespace Tiko_WebAPI.Controllers
     public class DpAgentController : ControllerBase
     {
         private readonly IAgentServiceDp _agentService;
-        private readonly IDbConnection _db;
 
         public DpAgentController(IAgentServiceDp agentService, IConfiguration config)
         {
             _agentService = agentService;
-            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         [HttpPost("add")]
@@ -40,8 +35,8 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            await _agentService.DeleteAgentAsync(_db.Get<Agent>(agentId));
-
+            Agent agentToRemove = await _agentService.GetAgentByIdAsync(agentId);
+            await _agentService.DeleteAgentAsync(agentToRemove);
             return NoContent();
         }
     }
