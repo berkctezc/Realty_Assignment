@@ -26,7 +26,7 @@ namespace Tiko_WebAPI.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<ActionResult<List<City>>> ListAgents()
+        public async Task<ActionResult<List<Agent>>> ListAgents()
         {
             var agents = await _agentService.ListAgentsAsync();
             return Ok(agents);

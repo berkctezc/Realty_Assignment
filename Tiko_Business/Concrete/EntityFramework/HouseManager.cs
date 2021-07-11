@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
 using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.EntityFramework
 {
@@ -30,9 +31,19 @@ namespace Tiko_Business.Concrete.EntityFramework
             return await _houseDal.GetListAsync(x => x.AgentId == id);
         }
 
+        public async Task<List<HouseDetail>> ListHouseDetailsByAgentIdAsync(int id)
+        {
+            return await _houseDal.GetHouseDetails(x=>x.AgentId==id);
+        }
+
         public async Task<List<House>> ListHousesByCityIdAsync(int id)
         {
             return await _houseDal.GetListAsync(x => x.CityId == id);
+        }
+
+        public async Task<List<HouseDetail>> ListHouseDetailsByCityIdAsync(int id)
+        {
+            return await _houseDal.GetHouseDetails(x => x.CityId == id);
         }
 
         public async Task UpdateHousePriceAsync(House house, int newPrice)
