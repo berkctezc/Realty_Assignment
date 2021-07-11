@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
-using Tiko_DataAccess.Concrete.EntityFramework;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_WebAPI.Controllers
 {
@@ -13,7 +13,7 @@ namespace Tiko_WebAPI.Controllers
     {
         private readonly IAgentServiceEf _agentService;
 
-        public AgentController(IAgentServiceEf agentService, TikoDbContext context)
+        public AgentController(IAgentServiceEf agentService)
         {
             _agentService = agentService;
         }
@@ -26,9 +26,16 @@ namespace Tiko_WebAPI.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<ActionResult<List<City>>> ListAgents()
+        public async Task<ActionResult<List<Agent>>> ListAgents()
         {
             var agents = await _agentService.ListAgentsAsync();
+            return Ok(agents);
+        }       
+        
+        [HttpGet("listdetails")]
+        public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
+        {
+            var agents = await _agentService.ListAgentDetailsAsync();
             return Ok(agents);
         }
 

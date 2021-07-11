@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
 using Tiko_DataAccess.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.EntityFramework
 {
@@ -28,6 +29,11 @@ namespace Tiko_Business.Concrete.EntityFramework
         public async Task<List<Agent>> ListAgentsAsync()
         {
             return await _agentDal.GetAllAsync();
+        }
+
+        public async Task<List<AgentDetail>> ListAgentDetailsAsync()
+        {
+            return await _agentDal.GetAgentDetails();
         }
 
         public async Task DeleteAgentAsync(Agent agent)

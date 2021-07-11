@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.EntityFramework;
-using Tiko_DataAccess.Concrete.EntityFramework;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_WebAPI.Controllers
 {
@@ -13,7 +13,7 @@ namespace Tiko_WebAPI.Controllers
     {
         private readonly IHouseServiceEf _houseService;
 
-        public HouseController(IHouseServiceEf houseService, TikoDbContext context)
+        public HouseController(IHouseServiceEf houseService)
         {
             _houseService = houseService;
         }
@@ -26,16 +26,30 @@ namespace Tiko_WebAPI.Controllers
         }
 
         [HttpGet("listByAgent/{agentId:int}")]
-        public async Task<ActionResult<List<City>>> ListHousesByAgent([FromRoute] int agentId)
+        public async Task<ActionResult<List<House>>> ListHousesByAgent([FromRoute] int agentId)
         {
             var houses = await _houseService.ListHousesByAgentIdAsync(agentId);
             return Ok(houses);
         }
 
         [HttpGet("listByCity/{cityId:int}")]
-        public async Task<ActionResult<List<City>>> ListHousesByCity([FromRoute] int cityId)
+        public async Task<ActionResult<List<House>>> ListHousesByCity([FromRoute] int cityId)
         {
             var houses = await _houseService.ListHousesByCityIdAsync(cityId);
+            return Ok(houses);
+        }      
+        
+        [HttpGet("listDetailsByAgent/{agentId:int}")]
+        public async Task<ActionResult<List<HouseDetail>>> ListHouseDetailsByAgent([FromRoute] int agentId)
+        {
+            var houses = await _houseService.ListHouseDetailsByAgentIdAsync(agentId);
+            return Ok(houses);
+        }
+
+        [HttpGet("listDetailsByCity/{cityId:int}")]
+        public async Task<ActionResult<List<HouseDetail>>> ListHouseDetailsByCity([FromRoute] int cityId)
+        {
+            var houses = await _houseService.ListHouseDetailsByCityIdAsync(cityId);
             return Ok(houses);
         }
 
