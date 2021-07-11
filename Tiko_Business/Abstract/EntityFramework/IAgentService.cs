@@ -8,6 +8,8 @@ namespace Tiko_Business.Abstract.EntityFramework
     {
         Task CreateAgentAsync(Agent agent);
 
+        Task<Agent> GetAgentById(int id);
+
         Task<List<Agent>> ListAgentsAsync();
 
         Task DeleteAgentAsync(Agent agent);

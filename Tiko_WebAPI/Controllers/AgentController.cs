@@ -13,12 +13,10 @@ namespace Tiko_WebAPI.Controllers
     public class AgentController : ControllerBase
     {
         private readonly IAgentServiceEf _agentService;
-        private readonly TikoDbContext _context;
 
         public AgentController(IAgentServiceEf agentService, TikoDbContext context)
         {
             _agentService = agentService;
-            _context = context;
         }
 
         [HttpPost("add")]
@@ -38,7 +36,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            Agent agentToDelete = await _context.Agents.SingleAsync(x => x.Id == agentId);
+            Agent agentToDelete = await _agentService.GetAgentById(agentId);
             await _agentService.DeleteAgentAsync(agentToDelete);
             return NoContent();
         }

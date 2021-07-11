@@ -20,6 +20,11 @@ namespace Tiko_Business.Concrete.EntityFramework
             await _houseDal.CreateAsync(house);
         }
 
+        public async Task<House> GetHouseById(int id)
+        {
+            return await _houseDal.GetAsync(h => h.Id == id);
+        }
+
         public async Task<List<House>> ListHousesByAgentIdAsync(int id)
         {
             return await _houseDal.GetListAsync(x => x.AgentId == id);

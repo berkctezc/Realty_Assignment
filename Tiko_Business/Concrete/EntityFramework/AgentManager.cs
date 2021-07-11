@@ -20,6 +20,11 @@ namespace Tiko_Business.Concrete.EntityFramework
             await _agentDal.CreateAsync(agent);
         }
 
+        public async Task<Agent> GetAgentById(int id)
+        {
+            return await _agentDal.GetAsync(a => a.Id == id);
+        }
+
         public async Task<List<Agent>> ListAgentsAsync()
         {
             return await _agentDal.GetAllAsync();

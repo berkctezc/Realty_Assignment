@@ -8,6 +8,8 @@ namespace Tiko_Business.Abstract.EntityFramework
     {
         Task CreateHouseAsync(House house);
 
+        Task<House> GetHouseById(int id);
+
         Task<List<House>> ListHousesByAgentIdAsync(int id);
 
         Task<List<House>> ListHousesByCityIdAsync(int id);

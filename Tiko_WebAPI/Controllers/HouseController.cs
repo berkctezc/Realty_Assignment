@@ -13,12 +13,10 @@ namespace Tiko_WebAPI.Controllers
     public class HouseController : ControllerBase
     {
         private readonly IHouseServiceEf _houseService;
-        private readonly TikoDbContext _context;
 
         public HouseController(IHouseServiceEf houseService, TikoDbContext context)
         {
             _houseService = houseService;
-            _context = context;
         }
 
         [HttpPost("add")]
@@ -45,7 +43,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]
         public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromRoute] int newPrice)
         {
-            House houseToUpdate = await _context.Houses.SingleAsync(x => x.Id == houseId);
+            House houseToUpdate = await _houseService.GetHouseById(houseId);
             await _houseService.UpdateHousePriceAsync(houseToUpdate, newPrice);
             return NoContent();
         }
@@ -53,7 +51,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{houseId:int}")]
         public async Task<ActionResult> RemoveHouse([FromRoute] int houseId)
         {
-            House houseToDelete = await _context.Houses.SingleAsync(x => x.Id == houseId);
+            House houseToDelete = await _houseService.GetHouseById(houseId);
             await _houseService.DeleteHouseAsync(houseToDelete);
             return NoContent();
         }
