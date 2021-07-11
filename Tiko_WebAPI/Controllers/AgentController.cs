@@ -32,7 +32,7 @@ namespace Tiko_WebAPI.Controllers
             return Ok(agents);
         }       
         
-        [HttpGet("listdetails")]
+        [HttpGet("listDetails")]
         public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
         {
             var agents = await _agentService.ListAgentDetailsAsync();
