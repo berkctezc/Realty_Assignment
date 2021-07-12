@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using Tiko_Entities.Concrete;
 using Tiko_Entities.DTOs;
 
-namespace Tiko_Business.Abstract.Dapper
+namespace Tiko_Business.Abstract.EntityFramework
 {
-    public interface IHouseServiceDp
+    public interface IEfHouseService
     {
         Task CreateHouseAsync(House house);
 
         Task<House> GetHouseByIdAsync(int id);
+
 
         Task<List<House>> ListHousesByAgentIdAsync(int id);
 
@@ -19,7 +20,7 @@ namespace Tiko_Business.Abstract.Dapper
 
         Task<List<HouseDetail>> ListHouseDetailsByCityIdAsync(int id);
 
-        Task UpdateHousePriceAsync(int houseId, int newPrice);
+        Task UpdateHousePriceAsync(House house, int newPrice);
 
         Task DeleteHouseAsync(House house);
     }

@@ -10,24 +10,24 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class DpCityController : ControllerBase
     {
-        private readonly ICityServiceDp _cityService;
+        private readonly IDpCityService _dpCityService;
 
-        public DpCityController(ICityServiceDp cityService)
+        public DpCityController(IDpCityService dpCityService)
         {
-            _cityService = cityService;
+            _dpCityService = dpCityService;
         }
 
         [HttpPost("add")]
         public async Task<ActionResult> AddCity([FromBody] City city)
         {
-            await _cityService.CreateCityAsync(city);
+            await _dpCityService.CreateCityAsync(city);
             return Created("add", city);
         }
 
         [HttpGet("list")]
         public async Task<ActionResult<List<City>>> ListCities()
         {
-            var cities = await _cityService.ListCitiesAsync();
+            var cities = await _dpCityService.ListCitiesAsync();
             return Ok(cities);
         }
     }

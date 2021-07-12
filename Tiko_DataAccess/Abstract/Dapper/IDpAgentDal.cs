@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using Tiko_Entities.Concrete;
 using Tiko_Entities.DTOs;
 
-namespace Tiko_DataAccess.Abstract.EntityFramework
+namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface IAgentDal : IRepository<Agent>
+    public interface IDpAgentDal : IDpRepository<Agent>
     {
         Task<List<AgentDetail>> GetAgentDetails();
     }

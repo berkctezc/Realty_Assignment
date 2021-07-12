@@ -2,5 +2,5 @@
 
 namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface ICityDalDp : IDapperRepository<City> { }
+    public interface IDpCityDal : IDpRepository<City> { }
 }

@@ -7,53 +7,53 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.Dapper
 {
-    public class HouseManagerDp : IHouseServiceDp
+    public class DpHouseManager : IDpHouseService
     {
-        private readonly IHouseDalDp _houseDalDp;
+        private readonly IDpHouseDal _dpHouseDal;
 
-        public HouseManagerDp(IHouseDalDp houseDalDp)
+        public DpHouseManager(IDpHouseDal dpHouseDal)
         {
-            _houseDalDp = houseDalDp;
+            _dpHouseDal = dpHouseDal;
         }
 
         public async Task CreateHouseAsync(House house)
         {
-            await _houseDalDp.CreateAsync(house);
+            await _dpHouseDal.CreateAsync(house);
         }
 
         public async Task<House> GetHouseByIdAsync(int id)
         {
-            return await _houseDalDp.GetByIdAsync(id);
+            return await _dpHouseDal.GetByIdAsync(id);
         }
 
         public Task<List<House>> ListHousesByAgentIdAsync(int id)
         {
-            return _houseDalDp.GetHousesByAgentIdAsync(id);
+            return _dpHouseDal.GetHousesByAgentIdAsync(id);
         }
 
         public async Task<List<HouseDetail>> ListHouseDetailsByAgentIdAsync(int id)
         {
-            return await _houseDalDp.GetHouseDetails("agentId", id);
+            return await _dpHouseDal.GetHouseDetails("agentId", id);
         }
 
         public Task<List<House>> ListHousesByCityIdAsync(int id)
         {
-            return _houseDalDp.GetHousesByCityIdAsync(id);
+            return _dpHouseDal.GetHousesByCityIdAsync(id);
         }
 
         public async Task<List<HouseDetail>> ListHouseDetailsByCityIdAsync(int id)
         {
-            return await _houseDalDp.GetHouseDetails("cityId", id);
+            return await _dpHouseDal.GetHouseDetails("cityId", id);
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
-            await _houseDalDp.UpdateHousePriceAsync(houseId, newPrice);
+            await _dpHouseDal.UpdateHousePriceAsync(houseId, newPrice);
         }
 
         public async Task DeleteHouseAsync(House house)
         {
-            await _houseDalDp.DeleteAsync(house);
+            await _dpHouseDal.DeleteAsync(house);
         }
     }
 }

@@ -7,7 +7,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Abstract.EntityFramework
 {
-    public interface IHouseDal : IRepository<House>
+    public interface IEfHouseDal : IEfRepository<House>
     {
         Task UpdateHousePriceAsync(House house, int newPrice);
 

@@ -7,38 +7,38 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.EntityFramework
 {
-    public class AgentManager : IAgentServiceEf
+    public class EfAgentManager : IEfAgentService
     {
-        private readonly IAgentDal _agentDal;
+        private readonly IEfAgentDal _efAgentDal;
 
-        public AgentManager(IAgentDal agentDal)
+        public EfAgentManager(IEfAgentDal efAgentDal)
         {
-            _agentDal = agentDal;
+            _efAgentDal = efAgentDal;
         }
 
         public async Task CreateAgentAsync(Agent agent)
         {
-            await _agentDal.CreateAsync(agent);
+            await _efAgentDal.CreateAsync(agent);
         }
 
         public async Task<Agent> GetAgentByIdAsync(int id)
         {
-            return await _agentDal.GetAsync(a => a.Id == id);
+            return await _efAgentDal.GetAsync(a => a.Id == id);
         }
 
         public async Task<List<Agent>> ListAgentsAsync()
         {
-            return await _agentDal.GetAllAsync();
+            return await _efAgentDal.GetAllAsync();
         }
 
         public async Task<List<AgentDetail>> ListAgentDetailsAsync()
         {
-            return await _agentDal.GetAgentDetails();
+            return await _efAgentDal.GetAgentDetails();
         }
 
         public async Task DeleteAgentAsync(Agent agent)
         {
-            await _agentDal.DeleteAsync(agent);
+            await _efAgentDal.DeleteAsync(agent);
         }
     }
 }

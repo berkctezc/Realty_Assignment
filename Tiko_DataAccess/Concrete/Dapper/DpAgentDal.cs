@@ -11,7 +11,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Concrete.Dapper
 {
-    public class DpAgentDal : GenericRepositoryDapper<Agent>, IAgentDalDp
+    public class DpAgentDal : DpGenericRepository<Agent>, IDpAgentDal
     {
         private readonly IDbConnection _db;
         public DpAgentDal(IConfiguration config) : base(config)

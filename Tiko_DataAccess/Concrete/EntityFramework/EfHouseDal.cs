@@ -10,7 +10,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework
 {
-    public class EfHouseDal : GenericRepositoryEf<House, TikoDbContext>, IHouseDal
+    public class EfHouseDal : EfGenericRepository<House, TikoDbContext>, IEfHouseDal
     {
         public async Task UpdateHousePriceAsync(House house, int newPrice)
         {

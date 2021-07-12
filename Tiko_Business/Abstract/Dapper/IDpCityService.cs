@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Tiko_Entities.Concrete;
 
-namespace Tiko_Business.Abstract.EntityFramework
+namespace Tiko_Business.Abstract.Dapper
 {
-    public interface ICityServiceEf
+    public interface IDpCityService
     {
         Task CreateCityAsync(City city);
 

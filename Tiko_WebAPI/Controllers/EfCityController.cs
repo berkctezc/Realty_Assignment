@@ -8,26 +8,26 @@ namespace Tiko_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CityController : ControllerBase
+    public class EfCityController : ControllerBase
     {
-        private readonly ICityServiceEf _cityService;
+        private readonly IEfCityService _efCityService;
 
-        public CityController(ICityServiceEf cityService)
+        public EfCityController(IEfCityService efCityService)
         {
-            _cityService = cityService;
+            _efCityService = efCityService;
         }
 
         [HttpPost("add")]
         public async Task<ActionResult> AddCity([FromBody] City city)
         {
-            await _cityService.CreateCityAsync(city);
+            await _efCityService.CreateCityAsync(city);
             return Created("add", city);
         }
 
         [HttpGet("list")]
         public async Task<ActionResult<List<City>>> ListCities()
         {
-            var cities = await _cityService.ListCitiesAsync();
+            var cities = await _efCityService.ListCitiesAsync();
             return Ok(cities);
         }
     }

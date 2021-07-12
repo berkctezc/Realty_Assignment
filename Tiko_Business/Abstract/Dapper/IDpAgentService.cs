@@ -5,7 +5,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Abstract.Dapper
 {
-    public interface IAgentServiceDp
+    public interface IDpAgentService
     {
         Task CreateAgentAsync(Agent agent);
 

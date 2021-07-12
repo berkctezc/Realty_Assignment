@@ -28,24 +28,24 @@ namespace Tiko_WebAPI.Extensions
             });
 
             // ENTITY FRAMEWORK
-            services.AddScoped<IAgentServiceEf, AgentManager>();
-            services.AddScoped<IAgentDal, EfAgentDal>();
+            services.AddScoped<IEfAgentService, EfAgentManager>();
+            services.AddScoped<IEfAgentDal, EfAgentDal>();
 
-            services.AddScoped<ICityServiceEf, CityManager>();
-            services.AddScoped<ICityDal, EfCityDal>();
+            services.AddScoped<IEfCityService, EfCityManager>();
+            services.AddScoped<IEfCityDal, EfCityDal>();
 
-            services.AddScoped<IHouseServiceEf, HouseManager>();
-            services.AddScoped<IHouseDal, EfHouseDal>();
+            services.AddScoped<IEfHouseService, EfHouseManager>();
+            services.AddScoped<IEfHouseDal, EfHouseDal>();
 
             // DAPPER
-            services.AddScoped<IAgentServiceDp, AgentManagerDp>();
-            services.AddScoped<IAgentDalDp, DpAgentDal>();
+            services.AddScoped<IDpAgentService, DpAgentManager>();
+            services.AddScoped<IDpAgentDal, DpAgentDal>();
 
-            services.AddScoped<ICityServiceDp, CityManagerDp>();
-            services.AddScoped<ICityDalDp, DpCityDal>();
+            services.AddScoped<IDpCityService, DpCityManager>();
+            services.AddScoped<IDpCityDal, DpCityDal>();
 
-            services.AddScoped<IHouseServiceDp, HouseManagerDp>();
-            services.AddScoped<IHouseDalDp, DpHouseDal>();
+            services.AddScoped<IDpHouseService, DpHouseManager>();
+            services.AddScoped<IDpHouseDal, DpHouseDal>();
             // ----
 
             services.AddMemoryCache();

@@ -5,7 +5,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Abstract.EntityFramework
 {
-    public interface IAgentServiceEf
+    public interface IEfAgentService
     {
         Task CreateAgentAsync(Agent agent);
 

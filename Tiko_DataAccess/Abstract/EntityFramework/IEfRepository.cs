@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Tiko_DataAccess.Abstract.EntityFramework
 {
-    public interface IRepository<T>
+    public interface IEfRepository<T>
     {
         Task CreateAsync(T x);
 

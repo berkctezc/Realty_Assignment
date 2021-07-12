@@ -7,7 +7,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework
 {
-    public class EfAgentDal : GenericRepositoryEf<Agent, TikoDbContext>, IAgentDal
+    public class EfAgentDal : EfGenericRepository<Agent, TikoDbContext>, IEfAgentDal
     {
         public async Task<List<AgentDetail>> GetAgentDetails()
         {

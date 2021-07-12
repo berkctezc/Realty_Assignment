@@ -6,23 +6,23 @@ using Tiko_Entities.Concrete;
 
 namespace Tiko_Business.Concrete.Dapper
 {
-    public class CityManagerDp : ICityServiceDp
+    public class DpCityManager : IDpCityService
     {
-        private readonly ICityDalDp _cityDalDp;
+        private readonly IDpCityDal _dpCityDal;
 
-        public CityManagerDp(ICityDalDp cityDalDp)
+        public DpCityManager(IDpCityDal dpCityDal)
         {
-            _cityDalDp = cityDalDp;
+            _dpCityDal = dpCityDal;
         }
 
         public async Task CreateCityAsync(City city)
         {
-            await _cityDalDp.CreateAsync(city);
+            await _dpCityDal.CreateAsync(city);
         }
 
         public async Task<List<City>> ListCitiesAsync()
         {
-            return await _cityDalDp.GetAllAsync();
+            return await _dpCityDal.GetAllAsync();
         }
     }
 }

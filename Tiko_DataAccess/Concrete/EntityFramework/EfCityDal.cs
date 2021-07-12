@@ -3,5 +3,5 @@ using Tiko_Entities.Concrete;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework
 {
-    public class EfCityDal : GenericRepositoryEf<City, TikoDbContext>, ICityDal { }
+    public class EfCityDal : EfGenericRepository<City, TikoDbContext>, IEfCityDal { }
 }

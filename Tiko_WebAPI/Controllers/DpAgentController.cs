@@ -12,12 +12,12 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class DpAgentController : ControllerBase
     {
-        private readonly IAgentServiceDp _agentService;
+        private readonly IDpAgentService _dpAgentService;
         private readonly IMemoryCache _memoryCache;
 
-        public DpAgentController(IAgentServiceDp agentService,IMemoryCache memoryCache)
+        public DpAgentController(IDpAgentService dpAgentService,IMemoryCache memoryCache)
         {
-            _agentService = agentService;
+            _dpAgentService = dpAgentService;
             _memoryCache = memoryCache;
         }
 
@@ -27,7 +27,7 @@ namespace Tiko_WebAPI.Controllers
             _memoryCache.Remove("agents");
             _memoryCache.Remove("agentDetails");
 
-            await _agentService.CreateAgentAsync(agent);
+            await _dpAgentService.CreateAgentAsync(agent);
             return Created("add", agent);
         }
 
@@ -37,7 +37,7 @@ namespace Tiko_WebAPI.Controllers
             if (_memoryCache.TryGetValue("agents", out List<Agent> agents))
                 return Ok(agents);
 
-            agents = await _agentService.ListAgentsAsync();
+            agents = await _dpAgentService.ListAgentsAsync();
 
             _memoryCache.Set("agents", agents, new MemoryCacheEntryOptions());
 
@@ -50,7 +50,7 @@ namespace Tiko_WebAPI.Controllers
             if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails))
                 return Ok(agentDetails);
 
-            var agents = await _agentService.ListAgentDetailsAsync();
+            var agents = await _dpAgentService.ListAgentDetailsAsync();
 
             _memoryCache.Set("agentDetails", agentDetails, new MemoryCacheEntryOptions());
 
@@ -63,8 +63,8 @@ namespace Tiko_WebAPI.Controllers
             _memoryCache.Remove("agents");
             _memoryCache.Remove("agentDetails");
 
-            Agent agentToRemove = await _agentService.GetAgentByIdAsync(agentId);
-            await _agentService.DeleteAgentAsync(agentToRemove);
+            Agent agentToRemove = await _dpAgentService.GetAgentByIdAsync(agentId);
+            await _dpAgentService.DeleteAgentAsync(agentToRemove);
             return NoContent();
         }
     }

@@ -10,60 +10,60 @@ namespace Tiko_WebAPI.Controllers
     [ApiController]
     public class DpHouseController : ControllerBase
     {
-        private readonly IHouseServiceDp _houseService;
+        private readonly IDpHouseService _dpHouseService;
 
-        public DpHouseController(IHouseServiceDp houseService)
+        public DpHouseController(IDpHouseService dpHouseService)
         {
-            _houseService = houseService;
+            _dpHouseService = dpHouseService;
         }
 
         [HttpPost("add")]
         public async Task<ActionResult> AddHouse([FromBody] House house)
         {
-            await _houseService.CreateHouseAsync(house);
+            await _dpHouseService.CreateHouseAsync(house);
             return Created("add", house);
         }
 
         [HttpGet("listByAgent/{agentId:int}")]
         public async Task<ActionResult<List<House>>> ListHousesByAgent([FromRoute] int agentId)
         {
-            var houses = await Task.Run(() => _houseService.ListHousesByAgentIdAsync(agentId));
+            var houses = await Task.Run(() => _dpHouseService.ListHousesByAgentIdAsync(agentId));
             return Ok(houses);
         }
 
         [HttpGet("listByCity/{cityId:int}")]
         public async Task<ActionResult<List<House>>> ListHousesByCity([FromRoute] int cityId)
         {
-            var houses = await Task.Run(() => _houseService.ListHousesByCityIdAsync(cityId));
+            var houses = await Task.Run(() => _dpHouseService.ListHousesByCityIdAsync(cityId));
             return Ok(houses);
         }      
         
         [HttpGet("listDetailsByAgent/{agentId:int}")]
         public async Task<ActionResult<List<House>>> ListHouseDetailsByAgent([FromRoute] int agentId)
         {
-            var houses = await Task.Run(() => _houseService.ListHouseDetailsByAgentIdAsync(agentId));
+            var houses = await Task.Run(() => _dpHouseService.ListHouseDetailsByAgentIdAsync(agentId));
             return Ok(houses);
         }
 
         [HttpGet("listDetailsByCity/{cityId:int}")]
         public async Task<ActionResult<List<House>>> ListHouseDetailsByCity([FromRoute] int cityId)
         {
-            var houses = await Task.Run(() => _houseService.ListHouseDetailsByCityIdAsync(cityId));
+            var houses = await Task.Run(() => _dpHouseService.ListHouseDetailsByCityIdAsync(cityId));
             return Ok(houses);
         }
 
         [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]
         public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromRoute] int newPrice)
         {
-            await _houseService.UpdateHousePriceAsync(houseId, newPrice);
+            await _dpHouseService.UpdateHousePriceAsync(houseId, newPrice);
             return NoContent();
         }
 
         [HttpDelete("remove/{houseId:int}")]
         public async Task<ActionResult> RemoveHouse([FromRoute] int houseId)
         {
-            House houseToRemove = await _houseService.GetHouseByIdAsync(houseId);
-            await _houseService.DeleteHouseAsync(houseToRemove);
+            House houseToRemove = await _dpHouseService.GetHouseByIdAsync(houseId);
+            await _dpHouseService.DeleteHouseAsync(houseToRemove);
             return NoContent();
         }
     }

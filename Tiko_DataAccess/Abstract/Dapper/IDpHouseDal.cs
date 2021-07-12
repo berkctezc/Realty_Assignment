@@ -5,7 +5,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface IHouseDalDp : IDapperRepository<House>
+    public interface IDpHouseDal : IDpRepository<House>
     {
         Task<List<House>> GetHousesByAgentIdAsync(int agentId);
 

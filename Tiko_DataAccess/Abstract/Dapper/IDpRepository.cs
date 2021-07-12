@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface IDapperRepository<T>
+    public interface IDpRepository<T>
         where T : class, new()
     {
         Task<List<T>> GetAllAsync();

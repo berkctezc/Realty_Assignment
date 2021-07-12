@@ -6,23 +6,23 @@ using Tiko_Entities.Concrete;
 
 namespace Tiko_Business.Concrete.EntityFramework
 {
-    public class CityManager : ICityServiceEf
+    public class EfCityManager : IEfCityService
     {
-        private readonly ICityDal _cityDal;
+        private readonly IEfCityDal _efCityDal;
 
-        public CityManager(ICityDal cityDal)
+        public EfCityManager(IEfCityDal efCityDal)
         {
-            _cityDal = cityDal;
+            _efCityDal = efCityDal;
         }
 
         public async Task CreateCityAsync(City city)
         {
-            await _cityDal.CreateAsync(city);
+            await _efCityDal.CreateAsync(city);
         }
 
         public async Task<List<City>> ListCitiesAsync()
         {
-            return await _cityDal.GetAllAsync();
+            return await _efCityDal.GetAllAsync();
         }
     }
 }

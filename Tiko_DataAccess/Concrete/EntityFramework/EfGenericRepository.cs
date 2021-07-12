@@ -9,7 +9,7 @@ using Tiko_Entities.Abstract;
 
 namespace Tiko_DataAccess.Concrete.EntityFramework
 {
-    public class GenericRepositoryEf<TEntity, TContext> : IRepository<TEntity>
+    public class EfGenericRepository<TEntity, TContext> : IEfRepository<TEntity>
         where TEntity : class, IEntity, new()
         where TContext : DbContext, new()
 

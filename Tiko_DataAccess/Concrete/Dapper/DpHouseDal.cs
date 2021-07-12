@@ -11,7 +11,7 @@ using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Concrete.Dapper
 {
-    public class DpHouseDal : GenericRepositoryDapper<House>, IHouseDalDp
+    public class DpHouseDal : DpGenericRepository<House>, IDpHouseDal
     {
         private readonly IDbConnection _db;
 

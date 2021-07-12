@@ -2,7 +2,7 @@
 
 namespace Tiko_DataAccess.Abstract.EntityFramework
 {
-    public interface ICityDal : IRepository<City>
+    public interface IEfCityDal : IEfRepository<City>
     {
     }
 }

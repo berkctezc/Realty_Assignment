@@ -9,11 +9,11 @@ using Tiko_Entities.Abstract;
 
 namespace Tiko_DataAccess.Concrete.Dapper
 {
-    public class GenericRepositoryDapper<T> : IDapperRepository<T> where T : class, IEntity, new()
+    public class DpGenericRepository<T> : IDpRepository<T> where T : class, IEntity, new()
     {
         private readonly IDbConnection _db;
 
-        public GenericRepositoryDapper(IConfiguration config)
+        public DpGenericRepository(IConfiguration config)
         {
             this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
