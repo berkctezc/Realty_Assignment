@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_WebAPI.Controllers
 {
@@ -29,6 +30,13 @@ namespace Tiko_WebAPI.Controllers
         public async Task<ActionResult<List<Agent>>> ListAgents()
         {
             var agents = await _agentService.ListAgentsAsync();
+            return Ok(agents);
+        }
+
+        [HttpGet("listDetails")]
+        public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
+        {
+            var agents = await _agentService.ListAgentDetailsAsync();
             return Ok(agents);
         }
 

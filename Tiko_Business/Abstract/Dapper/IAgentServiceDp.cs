@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Abstract.Dapper
 {
@@ -11,6 +12,8 @@ namespace Tiko_Business.Abstract.Dapper
         Task<Agent> GetAgentByIdAsync(int id);
 
         Task<List<Agent>> ListAgentsAsync();
+
+        Task<List<AgentDetail>> ListAgentDetailsAsync();
 
         Task DeleteAgentAsync(Agent agent);
     }

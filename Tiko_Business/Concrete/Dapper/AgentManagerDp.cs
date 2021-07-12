@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.Dapper
 {
@@ -28,6 +29,11 @@ namespace Tiko_Business.Concrete.Dapper
         public async Task<List<Agent>> ListAgentsAsync()
         {
             return await _agentDalDp.GetAllAsync();
+        }
+
+        public async Task<List<AgentDetail>> ListAgentDetailsAsync()
+        {
+            return await _agentDalDp.GetAgentDetails();
         }
 
         public async Task DeleteAgentAsync(Agent agent)

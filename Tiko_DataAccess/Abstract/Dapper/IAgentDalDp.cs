@@ -1,6 +1,12 @@
-﻿using Tiko_Entities.Concrete;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Abstract.Dapper
 {
-    public interface IAgentDalDp : IDapperRepository<Agent> { }
+    public interface IAgentDalDp : IDapperRepository<Agent>
+    {
+        Task<List<AgentDetail>> GetAgentDetails();
+    }
 }
