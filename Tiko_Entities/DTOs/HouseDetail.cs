@@ -1,6 +1,8 @@
-﻿namespace Tiko_Entities.DTOs
+﻿using Tiko_Entities.Abstract;
+
+namespace Tiko_Entities.DTOs
 {
-    public class HouseDetail
+    public class HouseDetail : IDto
     {
         public int Id { get; set; }
         public int Price { get; set; }

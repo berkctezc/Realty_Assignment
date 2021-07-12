@@ -15,7 +15,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
 
         public DpGenericRepository(IConfiguration config)
         {
-            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
+            _db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         public async Task<List<T>> GetAllAsync()

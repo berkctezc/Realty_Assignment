@@ -11,7 +11,7 @@ namespace Tiko_DataAccess.Abstract.Dapper
 
         Task<List<House>> GetHousesByCityIdAsync(int cityId);
 
-        Task<List<HouseDetail>> GetHouseDetails(string operationType,int id);
+        Task<List<HouseDetail>> GetHouseDetails(string operationType, int id);
 
         Task UpdateHousePriceAsync(int houseId, int newPrice);
     }

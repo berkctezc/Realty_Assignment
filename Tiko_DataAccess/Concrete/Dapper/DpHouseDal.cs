@@ -17,19 +17,19 @@ namespace Tiko_DataAccess.Concrete.Dapper
 
         public DpHouseDal(IConfiguration config) : base(config)
         {
-            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
+            _db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         public Task<List<House>> GetHousesByAgentIdAsync(int agentId)
         {
-            var sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return Task.Run(() => _db.Query<House>(sql, new { AgentId = agentId }).ToList());
+            const string sql = "SELECT * from Houses WHERE AgentId = @AgentId";
+            return Task.Run(() => _db.Query<House>(sql, new {AgentId = agentId}).ToList());
         }
 
         public Task<List<House>> GetHousesByCityIdAsync(int cityId)
         {
-            var sql = "SELECT * from Houses WHERE CityId = @CityId";
-            return Task.Run(() => _db.Query<House>(sql, new { CityId = cityId }).ToList());
+            const string sql = "SELECT * from Houses WHERE CityId = @CityId";
+            return Task.Run(() => _db.Query<House>(sql, new {CityId = cityId}).ToList());
         }
 
         public async Task<List<HouseDetail>> GetHouseDetails(string operationType, int id)
@@ -39,7 +39,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
                 "h.BedroomCount, c.Name as CityName, h.Description, h.Price " +
                 "FROM Houses as h " +
                 "INNER JOIN Cities as c ON h.CityId=c.Id " +
-                "INNER JOIN Agents as a ON h.AgentId=a.Id " + 
+                "INNER JOIN Agents as a ON h.AgentId=a.Id " +
                 $"WHERE h.{operationType}={id}";
 
             return await Task.Run(() => _db.Query<HouseDetail>(sql).ToList());
@@ -47,8 +47,8 @@ namespace Tiko_DataAccess.Concrete.Dapper
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
-            var sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
-            await _db.ExecuteAsync(sql, new { Price = newPrice, Id = houseId });
+            const string sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
+            await _db.ExecuteAsync(sql, new {Price = newPrice, Id = houseId});
         }
     }
 }

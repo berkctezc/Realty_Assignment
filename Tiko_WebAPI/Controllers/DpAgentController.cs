@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
@@ -24,7 +23,7 @@ namespace Tiko_WebAPI.Controllers
 
         private void Remover()
         {
-            string[] cachedList = { "agents", "agentDetails" };
+            string[] cachedList = {"agents", "agentDetails"};
             foreach (var cached in cachedList) _memoryCache.Remove(cached);
         }
 

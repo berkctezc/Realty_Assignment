@@ -14,7 +14,7 @@ namespace Tiko_WebAPI.Controllers
         private readonly IEfCityService _efCityService;
         private readonly IMemoryCache _memoryCache;
 
-        public EfCityController(IEfCityService efCityService,IMemoryCache memoryCache)
+        public EfCityController(IEfCityService efCityService, IMemoryCache memoryCache)
         {
             _efCityService = efCityService;
             _memoryCache = memoryCache;
@@ -22,7 +22,7 @@ namespace Tiko_WebAPI.Controllers
 
         private void Remover()
         {
-            string[] cachedList = { "cities" };
+            string[] cachedList = {"cities"};
             foreach (var cached in cachedList) _memoryCache.Remove(cached);
         }
 

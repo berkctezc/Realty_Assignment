@@ -23,7 +23,7 @@ namespace Tiko_WebAPI.Controllers
 
         private void Remover()
         {
-            string[] cachedList = { "agents", "agentDetails" };
+            string[] cachedList = {"agents", "agentDetails"};
             foreach (var cached in cachedList) _memoryCache.Remove(cached);
         }
 

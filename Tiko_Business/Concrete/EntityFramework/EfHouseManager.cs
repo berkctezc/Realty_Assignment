@@ -33,7 +33,7 @@ namespace Tiko_Business.Concrete.EntityFramework
 
         public async Task<List<HouseDetail>> ListHouseDetailsByAgentIdAsync(int id)
         {
-            return await _efHouseDal.GetHouseDetails(x=>x.AgentId==id);
+            return await _efHouseDal.GetHouseDetails(x => x.AgentId == id);
         }
 
         public async Task<List<House>> ListHousesByCityIdAsync(int id)

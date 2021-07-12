@@ -37,8 +37,8 @@ namespace Tiko_WebAPI.Controllers
         {
             var houses = await _efHouseService.ListHousesByCityIdAsync(cityId);
             return Ok(houses);
-        }      
-        
+        }
+
         [HttpGet("listDetailsByAgent/{agentId:int}")]
         public async Task<ActionResult<List<HouseDetail>>> ListHouseDetailsByAgent([FromRoute] int agentId)
         {

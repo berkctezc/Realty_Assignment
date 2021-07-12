@@ -14,14 +14,16 @@ namespace Tiko_DataAccess.Concrete.Dapper
     public class DpAgentDal : DpGenericRepository<Agent>, IDpAgentDal
     {
         private readonly IDbConnection _db;
+
         public DpAgentDal(IConfiguration config) : base(config)
         {
-            this._db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
+            _db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
         }
 
         public async Task<List<AgentDetail>> GetAgentDetails()
         {
-            var sql = "SELECT Agents.Id,Agents.Name,Cities.Name as CityName FROM Agents INNER JOIN Cities ON Agents.CityId=Cities.Id;";
+            const string sql =
+                "SELECT Agents.Id,Agents.Name,Cities.Name as CityName FROM Agents INNER JOIN Cities ON Agents.CityId=Cities.Id;";
 
             return await Task.Run(() => _db.Query<AgentDetail>(sql).ToList());
         }
