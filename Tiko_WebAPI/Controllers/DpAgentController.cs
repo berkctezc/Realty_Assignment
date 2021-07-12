@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Caching.Memory;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 using Tiko_Entities.DTOs;
@@ -13,15 +13,20 @@ namespace Tiko_WebAPI.Controllers
     public class DpAgentController : ControllerBase
     {
         private readonly IAgentServiceDp _agentService;
+        private readonly IMemoryCache _memoryCache;
 
-        public DpAgentController(IAgentServiceDp agentService, IConfiguration config)
+        public DpAgentController(IAgentServiceDp agentService,IMemoryCache memoryCache)
         {
             _agentService = agentService;
+            _memoryCache = memoryCache;
         }
 
         [HttpPost("add")]
         public async Task<ActionResult> AddAgent([FromBody] Agent agent)
         {
+            _memoryCache.Remove("agents");
+            _memoryCache.Remove("agentDetails");
+
             await _agentService.CreateAgentAsync(agent);
             return Created("add", agent);
         }
@@ -29,20 +34,35 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("list")]
         public async Task<ActionResult<List<Agent>>> ListAgents()
         {
-            var agents = await _agentService.ListAgentsAsync();
+            if (_memoryCache.TryGetValue("agents", out List<Agent> agents))
+                return Ok(agents);
+
+            agents = await _agentService.ListAgentsAsync();
+
+            _memoryCache.Set("agents", agents, new MemoryCacheEntryOptions());
+
             return Ok(agents);
         }
 
         [HttpGet("listDetails")]
         public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
         {
+            if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails))
+                return Ok(agentDetails);
+
             var agents = await _agentService.ListAgentDetailsAsync();
+
+            _memoryCache.Set("agentDetails", agentDetails, new MemoryCacheEntryOptions());
+
             return Ok(agents);
         }
 
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
+            _memoryCache.Remove("agents");
+            _memoryCache.Remove("agentDetails");
+
             Agent agentToRemove = await _agentService.GetAgentByIdAsync(agentId);
             await _agentService.DeleteAgentAsync(agentToRemove);
             return NoContent();

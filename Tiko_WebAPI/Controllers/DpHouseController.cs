@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tiko_Business.Abstract.Dapper;
@@ -13,7 +12,7 @@ namespace Tiko_WebAPI.Controllers
     {
         private readonly IHouseServiceDp _houseService;
 
-        public DpHouseController(IHouseServiceDp houseService, IConfiguration config)
+        public DpHouseController(IHouseServiceDp houseService)
         {
             _houseService = houseService;
         }

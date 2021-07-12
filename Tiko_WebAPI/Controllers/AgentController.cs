@@ -5,7 +5,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Tiko_Business.Abstract.EntityFramework;
 using Tiko_Entities.Concrete;
 using Tiko_Entities.DTOs;
-using Tiko_WebAPI.Extensions;
 
 namespace Tiko_WebAPI.Controllers
 {
