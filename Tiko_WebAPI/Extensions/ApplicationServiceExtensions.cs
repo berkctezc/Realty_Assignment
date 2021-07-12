@@ -21,6 +21,7 @@ namespace Tiko_WebAPI.Extensions
             {
                 options.UseSqlite(config.GetConnectionString("DefaultConnection"));
             });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Tiko_WebAPI", Version = "v1" });
@@ -45,6 +46,11 @@ namespace Tiko_WebAPI.Extensions
 
             services.AddScoped<IHouseServiceDp, HouseManagerDp>();
             services.AddScoped<IHouseDalDp, DpHouseDal>();
+            // ----
+
+            services.AddMemoryCache();
+
+            services.AddControllers();
 
             return services;
         }
