@@ -56,7 +56,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]
         public async Task<ActionResult> UpdateHousePrice([FromRoute] int houseId, [FromRoute] int newPrice)
         {
-            House houseToUpdate = await _efHouseService.GetHouseByIdAsync(houseId);
+            var houseToUpdate = await _efHouseService.GetHouseByIdAsync(houseId);
             await _efHouseService.UpdateHousePriceAsync(houseToUpdate, newPrice);
             return NoContent();
         }
@@ -64,7 +64,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{houseId:int}")]
         public async Task<ActionResult> RemoveHouse([FromRoute] int houseId)
         {
-            House houseToDelete = await _efHouseService.GetHouseByIdAsync(houseId);
+            var houseToDelete = await _efHouseService.GetHouseByIdAsync(houseId);
             await _efHouseService.DeleteHouseAsync(houseToDelete);
             return NoContent();
         }

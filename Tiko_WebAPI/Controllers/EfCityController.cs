@@ -20,10 +20,16 @@ namespace Tiko_WebAPI.Controllers
             _memoryCache = memoryCache;
         }
 
+        private void Remover()
+        {
+            string[] cachedList = { "cities" };
+            foreach (var cached in cachedList) _memoryCache.Remove(cached);
+        }
+
         [HttpPost("add")]
         public async Task<ActionResult> AddCity([FromBody] City city)
         {
-            _memoryCache.Remove("cities");
+            Remover();
 
             await _efCityService.CreateCityAsync(city);
             return Created("add", city);
@@ -32,8 +38,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("list")]
         public async Task<ActionResult<List<City>>> ListCities()
         {
-            if (_memoryCache.TryGetValue("cities", out List<City> cities))
-                return Ok(cities);
+            if (_memoryCache.TryGetValue("cities", out List<City> cities)) return Ok(cities);
 
             cities = await _efCityService.ListCitiesAsync();
 

@@ -21,22 +21,26 @@ namespace Tiko_WebAPI.Controllers
             _memoryCache = memoryCache;
         }
 
+        private void Remover()
+        {
+            string[] cachedList = { "agents", "agentDetails" };
+            foreach (var cached in cachedList) _memoryCache.Remove(cached);
+        }
 
         [HttpPost("add")]
         public async Task<ActionResult> AddAgent([FromBody] Agent agent)
         {
-            _memoryCache.Remove("agents");
-            _memoryCache.Remove("agentDetails");
+            Remover();
 
             await _efAgentService.CreateAgentAsync(agent);
+
             return Created("add", agent);
         }
 
         [HttpGet("list")]
         public async Task<ActionResult<List<Agent>>> ListAgents()
         {
-            if (_memoryCache.TryGetValue("agents", out List<Agent> agents))
-                return Ok(agents);
+            if (_memoryCache.TryGetValue("agents", out List<Agent> agents)) return Ok(agents);
 
             agents = await _efAgentService.ListAgentsAsync();
 
@@ -48,8 +52,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("listDetails")]
         public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
         {
-            if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails))
-                return Ok(agentDetails);
+            if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails)) return Ok(agentDetails);
 
             agentDetails = await _efAgentService.ListAgentDetailsAsync();
 
@@ -61,11 +64,12 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            _memoryCache.Remove("agents");
-            _memoryCache.Remove("agentDetails");
+            Remover();
 
-            Agent agentToDelete = await _efAgentService.GetAgentByIdAsync(agentId);
+            var agentToDelete = await _efAgentService.GetAgentByIdAsync(agentId);
+
             await _efAgentService.DeleteAgentAsync(agentToDelete);
+
             return NoContent();
         }
     }

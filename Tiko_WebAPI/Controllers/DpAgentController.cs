@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
@@ -15,17 +16,22 @@ namespace Tiko_WebAPI.Controllers
         private readonly IDpAgentService _dpAgentService;
         private readonly IMemoryCache _memoryCache;
 
-        public DpAgentController(IDpAgentService dpAgentService,IMemoryCache memoryCache)
+        public DpAgentController(IDpAgentService dpAgentService, IMemoryCache memoryCache)
         {
             _dpAgentService = dpAgentService;
             _memoryCache = memoryCache;
         }
 
+        private void Remover()
+        {
+            string[] cachedList = { "agents", "agentDetails" };
+            foreach (var cached in cachedList) _memoryCache.Remove(cached);
+        }
+
         [HttpPost("add")]
         public async Task<ActionResult> AddAgent([FromBody] Agent agent)
         {
-            _memoryCache.Remove("agents");
-            _memoryCache.Remove("agentDetails");
+            Remover();
 
             await _dpAgentService.CreateAgentAsync(agent);
             return Created("add", agent);
@@ -34,8 +40,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("list")]
         public async Task<ActionResult<List<Agent>>> ListAgents()
         {
-            if (_memoryCache.TryGetValue("agents", out List<Agent> agents))
-                return Ok(agents);
+            if (_memoryCache.TryGetValue("agents", out List<Agent> agents)) return Ok(agents);
 
             agents = await _dpAgentService.ListAgentsAsync();
 
@@ -47,8 +52,7 @@ namespace Tiko_WebAPI.Controllers
         [HttpGet("listDetails")]
         public async Task<ActionResult<List<AgentDetail>>> ListAgentDetails()
         {
-            if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails))
-                return Ok(agentDetails);
+            if (_memoryCache.TryGetValue("agentDetails", out List<AgentDetail> agentDetails)) return Ok(agentDetails);
 
             var agents = await _dpAgentService.ListAgentDetailsAsync();
 
@@ -60,11 +64,12 @@ namespace Tiko_WebAPI.Controllers
         [HttpDelete("remove/{agentId:int}")]
         public async Task<ActionResult> RemoveAgent([FromRoute] int agentId)
         {
-            _memoryCache.Remove("agents");
-            _memoryCache.Remove("agentDetails");
+            Remover();
 
-            Agent agentToRemove = await _dpAgentService.GetAgentByIdAsync(agentId);
+            var agentToRemove = await _dpAgentService.GetAgentByIdAsync(agentId);
+
             await _dpAgentService.DeleteAgentAsync(agentToRemove);
+
             return NoContent();
         }
     }
