@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Dapper;
+using Microsoft.Data.Sqlite;
+using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using Microsoft.Data.Sqlite;
-using Microsoft.Extensions.Configuration;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
 using Tiko_Entities.DTOs;

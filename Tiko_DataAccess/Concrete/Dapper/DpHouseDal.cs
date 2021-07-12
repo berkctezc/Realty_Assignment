@@ -23,13 +23,13 @@ namespace Tiko_DataAccess.Concrete.Dapper
         public Task<List<House>> GetHousesByAgentIdAsync(int agentId)
         {
             const string sql = "SELECT * from Houses WHERE AgentId = @AgentId";
-            return Task.Run(() => _db.Query<House>(sql, new {AgentId = agentId}).ToList());
+            return Task.Run(() => _db.Query<House>(sql, new { AgentId = agentId }).ToList());
         }
 
         public Task<List<House>> GetHousesByCityIdAsync(int cityId)
         {
             const string sql = "SELECT * from Houses WHERE CityId = @CityId";
-            return Task.Run(() => _db.Query<House>(sql, new {CityId = cityId}).ToList());
+            return Task.Run(() => _db.Query<House>(sql, new { CityId = cityId }).ToList());
         }
 
         public async Task<List<HouseDetail>> GetHouseDetails(string operationType, int id)
@@ -48,7 +48,7 @@ namespace Tiko_DataAccess.Concrete.Dapper
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
         {
             const string sql = "UPDATE Houses SET Price = @Price WHERE Id = @Id";
-            await _db.ExecuteAsync(sql, new {Price = newPrice, Id = houseId});
+            await _db.ExecuteAsync(sql, new { Price = newPrice, Id = houseId });
         }
     }
 }

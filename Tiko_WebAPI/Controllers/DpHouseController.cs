@@ -25,7 +25,6 @@ namespace Tiko_WebAPI.Controllers
             return Created("add", house);
         }
 
-
         [HttpGet("listByAgent/{agentId:int}")]
         public async Task<ActionResult<List<House>>> ListHousesByAgent([FromRoute] int agentId)
         {

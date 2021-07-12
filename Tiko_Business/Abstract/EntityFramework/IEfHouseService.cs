@@ -11,7 +11,6 @@ namespace Tiko_Business.Abstract.EntityFramework
 
         Task<House> GetHouseByIdAsync(int id);
 
-
         Task<List<House>> ListHousesByAgentIdAsync(int id);
 
         Task<List<HouseDetail>> ListHouseDetailsByAgentIdAsync(int id);
