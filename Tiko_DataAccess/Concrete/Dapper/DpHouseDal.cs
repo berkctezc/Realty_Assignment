@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_DataAccess.Concrete.Dapper
 {
@@ -29,6 +30,19 @@ namespace Tiko_DataAccess.Concrete.Dapper
         {
             var sql = "SELECT * from Houses WHERE CityId = @CityId";
             return Task.Run(() => _db.Query<House>(sql, new { CityId = cityId }).ToList());
+        }
+
+        public async Task<List<HouseDetail>> GetHouseDetails(string operationType, int id)
+        {
+            var sql =
+                "SELECT h.Id, h.Address, a.Name as AgentName, " +
+                "h.BedroomCount, c.Name as CityName, h.Description, h.Price " +
+                "FROM Houses as h " +
+                "INNER JOIN Cities as c ON h.CityId=c.Id " +
+                "INNER JOIN Agents as a ON h.AgentId=a.Id " + 
+                $"WHERE h.{operationType}={id}";
+
+            return await Task.Run(() => _db.Query<HouseDetail>(sql).ToList());
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)

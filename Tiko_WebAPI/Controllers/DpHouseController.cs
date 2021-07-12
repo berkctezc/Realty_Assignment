@@ -37,6 +37,20 @@ namespace Tiko_WebAPI.Controllers
         {
             var houses = await Task.Run(() => _houseService.ListHousesByCityIdAsync(cityId));
             return Ok(houses);
+        }      
+        
+        [HttpGet("listDetailsByAgent/{agentId:int}")]
+        public async Task<ActionResult<List<House>>> ListHouseDetailsByAgent([FromRoute] int agentId)
+        {
+            var houses = await Task.Run(() => _houseService.ListHouseDetailsByAgentIdAsync(agentId));
+            return Ok(houses);
+        }
+
+        [HttpGet("listDetailsByCity/{cityId:int}")]
+        public async Task<ActionResult<List<House>>> ListHouseDetailsByCity([FromRoute] int cityId)
+        {
+            var houses = await Task.Run(() => _houseService.ListHouseDetailsByCityIdAsync(cityId));
+            return Ok(houses);
         }
 
         [HttpPut("updatePrice/{houseId:int}&setPrice={newPrice:int}")]

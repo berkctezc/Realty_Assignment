@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Tiko_Business.Abstract.Dapper;
 using Tiko_DataAccess.Abstract.Dapper;
 using Tiko_Entities.Concrete;
+using Tiko_Entities.DTOs;
 
 namespace Tiko_Business.Concrete.Dapper
 {
@@ -30,9 +31,19 @@ namespace Tiko_Business.Concrete.Dapper
             return _houseDalDp.GetHousesByAgentIdAsync(id);
         }
 
+        public async Task<List<HouseDetail>> ListHouseDetailsByAgentIdAsync(int id)
+        {
+            return await _houseDalDp.GetHouseDetails("agentId", id);
+        }
+
         public Task<List<House>> ListHousesByCityIdAsync(int id)
         {
             return _houseDalDp.GetHousesByCityIdAsync(id);
+        }
+
+        public async Task<List<HouseDetail>> ListHouseDetailsByCityIdAsync(int id)
+        {
+            return await _houseDalDp.GetHouseDetails("cityId", id);
         }
 
         public async Task UpdateHousePriceAsync(int houseId, int newPrice)
