@@ -1,15 +1,12 @@
 ﻿namespace Tiko_WebAPI.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
+[Route("api/[controller]"), ApiController]
 public class EfHouseController : ControllerBase
 {
     private readonly IEfHouseService _efHouseService;
 
     public EfHouseController(IEfHouseService efHouseService)
-    {
-        _efHouseService = efHouseService;
-    }
+        => _efHouseService = efHouseService;
 
     [HttpPost("add")]
     public async Task<ActionResult> AddHouse([FromBody] House house)

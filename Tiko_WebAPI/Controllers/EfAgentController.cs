@@ -1,7 +1,6 @@
 ﻿namespace Tiko_WebAPI.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
+[Route("api/[controller]"), ApiController]
 public class EfAgentController : ControllerBase
 {
     private readonly IEfAgentService _efAgentService;
@@ -15,7 +14,7 @@ public class EfAgentController : ControllerBase
 
     private void Remover()
     {
-        string[] cachedList = { "agents", "agentDetails" };
+        string[] cachedList = {"agents", "agentDetails"};
         foreach (var cached in cachedList) _memoryCache.Remove(cached);
     }
 
