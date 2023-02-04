@@ -5,32 +5,20 @@ public class EfAgentManager : IEfAgentService
     private readonly IEfAgentDal _efAgentDal;
 
     public EfAgentManager(IEfAgentDal efAgentDal)
-    {
-        _efAgentDal = efAgentDal;
-    }
+        => _efAgentDal = efAgentDal;
 
     public async Task CreateAgentAsync(Agent agent)
-    {
-        await _efAgentDal.CreateAsync(agent);
-    }
+        => await _efAgentDal.CreateAsync(agent);
 
     public async Task<Agent> GetAgentByIdAsync(int id)
-    {
-        return await _efAgentDal.GetAsync(a => a.Id == id);
-    }
+        => await _efAgentDal.GetAsync(a => a.Id == id);
 
     public async Task<List<Agent>> ListAgentsAsync()
-    {
-        return await _efAgentDal.GetAllAsync();
-    }
+        => await _efAgentDal.GetAllAsync();
 
     public async Task<List<AgentDetail>> ListAgentDetailsAsync()
-    {
-        return await _efAgentDal.GetAgentDetails();
-    }
+        => await _efAgentDal.GetAgentDetailsAsync();
 
     public async Task DeleteAgentAsync(Agent agent)
-    {
-        await _efAgentDal.DeleteAsync(agent);
-    }
+        => await _efAgentDal.DeleteAsync(agent);
 }
