@@ -2,5 +2,5 @@
 
 public interface IEfAgentDal : IEfRepository<Agent>
 {
-    Task<List<AgentDetail>> GetAgentDetails();
+    Task<List<AgentDetail>> GetAgentDetailsAsync();
 }

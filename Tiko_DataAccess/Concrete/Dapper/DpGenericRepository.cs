@@ -4,33 +4,21 @@ public class DpGenericRepository<T> : IDpRepository<T> where T : class, IEntity,
 {
     private readonly IDbConnection _db;
 
-    public DpGenericRepository(IConfiguration config)
-    {
-        _db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
-    }
+    protected DpGenericRepository(IConfiguration config)
+        => _db = new SqliteConnection(config.GetConnectionString("DefaultConnection"));
 
     public async Task<List<T>> GetAllAsync()
-    {
-        return await _db.GetAllAsync<T>() as List<T>;
-    }
+        => await _db.GetAllAsync<T>() as List<T>;
 
     public async Task<T> GetByIdAsync(int id)
-    {
-        return await _db.GetAsync<T>(id);
-    }
+        => await _db.GetAsync<T>(id);
 
     public async Task CreateAsync(T x)
-    {
-        await _db.InsertAsync(x);
-    }
+        => await _db.InsertAsync(x);
 
     public async Task UpdateAsync(T x)
-    {
-        await _db.UpdateAsync(x);
-    }
+        => await _db.UpdateAsync(x);
 
     public async Task DeleteAsync(T x)
-    {
-        await _db.DeleteAsync(x);
-    }
+        => await _db.DeleteAsync(x);
 }
