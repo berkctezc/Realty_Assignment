@@ -1,18 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Tiko_Entities.Concrete;
-using Tiko_Entities.DTOs;
+﻿namespace Tiko_DataAccess.Abstract.Dapper;
 
-namespace Tiko_DataAccess.Abstract.Dapper
+public interface IDpHouseDal : IDpRepository<House>
 {
-    public interface IDpHouseDal : IDpRepository<House>
-    {
-        Task<List<House>> GetHousesByAgentIdAsync(int agentId);
+    Task<List<House>> GetHousesByAgentIdAsync(int agentId);
 
-        Task<List<House>> GetHousesByCityIdAsync(int cityId);
+    Task<List<House>> GetHousesByCityIdAsync(int cityId);
 
-        Task<List<HouseDetail>> GetHouseDetails(string operationType, int id);
+    Task<List<HouseDetail>> GetHouseDetails(string operationType, int id);
 
-        Task UpdateHousePriceAsync(int houseId, int newPrice);
-    }
+    Task UpdateHousePriceAsync(int houseId, int newPrice);
 }

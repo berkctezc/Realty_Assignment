@@ -1,50 +1,42 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Tiko_Business.Abstract.EntityFramework;
-using Tiko_Entities.Concrete;
+﻿namespace Tiko_WebAPI.Controllers;
 
-namespace Tiko_WebAPI.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class EfCityController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EfCityController : ControllerBase
+    private readonly IEfCityService _efCityService;
+    private readonly IMemoryCache _memoryCache;
+
+    public EfCityController(IEfCityService efCityService, IMemoryCache memoryCache)
     {
-        private readonly IEfCityService _efCityService;
-        private readonly IMemoryCache _memoryCache;
+        _efCityService = efCityService;
+        _memoryCache = memoryCache;
+    }
 
-        public EfCityController(IEfCityService efCityService, IMemoryCache memoryCache)
-        {
-            _efCityService = efCityService;
-            _memoryCache = memoryCache;
-        }
+    private void Remover()
+    {
+        string[] cachedList = { "cities" };
+        foreach (var cached in cachedList) _memoryCache.Remove(cached);
+    }
 
-        private void Remover()
-        {
-            string[] cachedList = { "cities" };
-            foreach (var cached in cachedList) _memoryCache.Remove(cached);
-        }
+    [HttpPost("add")]
+    public async Task<ActionResult> AddCity([FromBody] City city)
+    {
+        Remover();
 
-        [HttpPost("add")]
-        public async Task<ActionResult> AddCity([FromBody] City city)
-        {
-            Remover();
+        await _efCityService.CreateCityAsync(city);
+        return Created("add", city);
+    }
 
-            await _efCityService.CreateCityAsync(city);
-            return Created("add", city);
-        }
+    [HttpGet("list")]
+    public async Task<ActionResult<List<City>>> ListCities()
+    {
+        if (_memoryCache.TryGetValue("cities", out List<City> cities)) return Ok(cities);
 
-        [HttpGet("list")]
-        public async Task<ActionResult<List<City>>> ListCities()
-        {
-            if (_memoryCache.TryGetValue("cities", out List<City> cities)) return Ok(cities);
+        cities = await _efCityService.ListCitiesAsync();
 
-            cities = await _efCityService.ListCitiesAsync();
+        _memoryCache.Set("cities", cities, new MemoryCacheEntryOptions());
 
-            _memoryCache.Set("cities", cities, new MemoryCacheEntryOptions());
-
-            return Ok(cities);
-        }
+        return Ok(cities);
     }
 }

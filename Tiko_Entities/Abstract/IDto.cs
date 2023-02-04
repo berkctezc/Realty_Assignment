@@ -1,6 +1,5 @@
-﻿namespace Tiko_Entities.Abstract
+﻿namespace Tiko_Entities.Abstract;
+
+public interface IDto
 {
-    public interface IDto
-    {
-    }
 }
